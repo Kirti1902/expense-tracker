@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ledger — Expense Passbook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="page">
+
+  <header class="masthead">
+    <div class="masthead-left">
+      <div class="ledger-mark">✎</div>
+      <div>
+        <h1>Ledger</h1>
+        <p class="subtitle">Your expense passbook</p>
+      </div>
+    </div>
+    <div class="month-picker">
+      <label for="monthSelect">Statement period</label>
+      <input type="month" id="monthSelect">
+      <div class="pdf-buttons">
+        <button class="btn-ghost" id="pdfMonthBtn">↓ Month PDF</button>
+        <button class="btn-ghost" id="pdfYearBtn">↓ Year PDF</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="stamp-row">
+    <div class="stamp" id="totalStamp">
+      <div class="stamp-inner">
+        <span class="stamp-label">Spent this period</span>
+        <span class="stamp-value" id="totalValue">—</span>
+      </div>
+    </div>
+    <div class="stat-card">
+      <span class="stat-label">Entries logged</span>
+      <span class="stat-value" id="entryCount">0</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-label">Top category</span>
+      <span class="stat-value" id="topCategory">—</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-label">Daily average</span>
+      <span class="stat-value" id="dailyAvg">—</span>
+    </div>
+  </section>
+
+  <section class="charts-row">
+    <div class="ledger-panel">
+      <h2>Spending by category</h2>
+      <canvas id="categoryChart" height="220"></canvas>
+    </div>
+    <div class="ledger-panel">
+      <h2>Daily spending</h2>
+      <canvas id="dailyChart" height="220"></canvas>
+    </div>
+  </section>
+
+  <section class="budgets-panel">
+    <div class="panel-header">
+      <h2>Budget lines</h2>
+      <button class="btn-ghost" id="addBudgetBtn">+ Set a budget</button>
+    </div>
+    <div id="budgetForm" class="budget-form hidden">
+      <select id="budgetCategory"></select>
+      <input type="number" id="budgetAmount" placeholder="Monthly limit">
+      <button class="btn-ink" id="saveBudgetBtn">Save</button>
+    </div>
+    <div id="budgetList" class="budget-list"></div>
+  </section>
+
+  <section class="ledger-entries">
+    <div class="panel-header">
+      <h2>Entries</h2>
+      <select id="categoryFilter">
+        <option value="">All categories</option>
+      </select>
+    </div>
+    <div class="entries-table">
+      <div class="entries-head">
+        <span>Date</span>
+        <span>Description</span>
+        <span>Category</span>
+        <span class="align-right">Amount</span>
+      </div>
+      <div id="entriesBody"></div>
+    </div>
+  </section>
+
+  <footer class="foot-note">
+    Logged via Telegram — every entry here started as a text like <em>"250 lunch"</em>.
+  </footer>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

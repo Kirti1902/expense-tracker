@@ -1,0 +1,5 @@
+node_modules/
+.env
+expenses.db
+expenses.db-shm
+expenses.db-wal
