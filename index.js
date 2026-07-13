@@ -1,3 +1,6 @@
+const dns = require('dns');
+dns.setDefaultResultOrder('ipv4first'); // avoids ETIMEDOUT on networks with broken/unreliable IPv6
+
 require('dotenv').config();
 const { createServer } = require('./server/api');
 const { createBot } = require('./server/bot');
